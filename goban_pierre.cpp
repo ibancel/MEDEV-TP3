@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Go.h"
-
+// Classes cpp
 
 void Goban :: affichage(){
 
