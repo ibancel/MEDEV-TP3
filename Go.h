@@ -48,7 +48,7 @@ class Joueur {
 
     public:
         void passer();
-        void poser();
+        void poser(vector<vector<Groupe*> >);
 
         int get_couleur(){return couleur;};
         int get_nb_captures(){return nb_capture;};
