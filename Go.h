@@ -8,7 +8,7 @@ class Goban {
 private:
 
     int taille;
-    vector <vector<Pierres*> > plateau;
+    vector <vector<Groupe*> > plateau;
 
 public :
 
@@ -30,6 +30,7 @@ private :
 
 public:
 
+
     int get_couleur () {return couleur;};
     int get_nb_liberte(){return nb_liberte;};
     vector <coord> get_pierres(){return pierres;}
@@ -50,12 +51,20 @@ class Joueur {
 
         int get_couleur(){return couleur;};
         int get_nb_captures(){return nb_capture;};
-        bool get-passe(){return passe;};
+        bool get_passe(){return passe;};
 
         Joueur(int c);
 
 
 
 }
+
+struct coord {
+    int x;
+    int y;
+
+}
+
+
 
 
