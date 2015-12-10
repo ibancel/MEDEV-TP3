@@ -73,19 +73,25 @@ Goban::Goban(int t){
     taille=t;
     int i, j;
     coord pos;
+    pos.x=0;
+    pos.y=0;
 
-    cout<<"bob";
-    for (i=0; i<taille;i++){
+
+    Groupe* gp= new Groupe(0,4,pos);
+    vector <Groupe*> liste(t, gp);
+    vector < vector<Groupe*> > bob(t, liste);
+    plateau= bob;
+
+    /*for (i=0; i<taille;i++){ //Mise à jour des positions des pierres
         for (j=0; j<taille;j++){
 
             pos.x=i;
             pos.y=j;
-            plateau[i][j]= new Groupe(0,4,pos);
-            cout<<plateau[0][0]->get_couleur()<<endl;
-
+            plateau[i][j]->get_pierres[0].x=i;
+            plateau[i][j]->get_pierres[0].y=i;
         }
 
-    }
+    }*/
 
 
 }
