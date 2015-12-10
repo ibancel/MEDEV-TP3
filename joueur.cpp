@@ -16,7 +16,7 @@ Joueur::Joueur(int c){//initialisation d'un joueur
     passe=false;
 }
 
-bool poser(vector<vector<Groupe*> > plateau, int c){
+bool Joueur::poser(vector<vector<Groupe*> > plateau, int c){
     int i,j;//coordonnée de pose
     bool aJoue=false;
     do{
@@ -88,7 +88,7 @@ bool poser(vector<vector<Groupe*> > plateau, int c){
         }
         //on compte le nombre de liberté de la pierre considérée comme fusionnée avec les groupes alentours
         for (int k=0;k<liste.size();k++){
-            cpt=cpt+liste[k]->get_nb_liberte()-1;
+            cpt=cpt+liste[k]->get_nb_liberte()-1; //ne représente pas le nombre de liberté du groupe fusionné ! permet juste de savoir si on se suicide ou pas
         }
 
 

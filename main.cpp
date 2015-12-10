@@ -11,6 +11,11 @@ int main(int argc, char **argv)
 
 	::testing::InitGoogleTest(&argc, argv);
 
+    Goban go(5);
+    go.affichage();
+    Joueur P1(1);
+    bool test = P1.poser(go.get_plateau(),1);
+    go.affichage();
 
     return RUN_ALL_TESTS();
 }
