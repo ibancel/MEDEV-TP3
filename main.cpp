@@ -24,7 +24,7 @@ TEST(initialisation_test, plateau5_vide)
 {
 	Goban go(5);
 	EXPECT_EQ(5, go.get_taille());
-	vector< vector<Groupe*> > plateau = go.get_plateau();
+	vector< vector<Groupe*> > *plateau = go.get_plateau();
 
 	for(int i = 0 ; i < 5 ; i++)
 	{
@@ -33,7 +33,7 @@ TEST(initialisation_test, plateau5_vide)
 			string str = i + "x" + j;
 
 			SCOPED_TRACE(str);
-			EXPECT_EQ(0, plateau[i][j]->get_couleur());
+			EXPECT_EQ(0, (*plateau)[i][j]->get_couleur());
 		}
 	}
 }
@@ -42,7 +42,7 @@ TEST(initialisation_test, plateau9_vide)
 {
 	Goban go(9);
 	EXPECT_EQ(9, go.get_taille());
-	vector< vector<Groupe*> > plateau = go.get_plateau();
+	vector< vector<Groupe*> > *plateau = go.get_plateau();
 
 	for(int i = 0 ; i < 9 ; i++)
 	{
@@ -50,7 +50,7 @@ TEST(initialisation_test, plateau9_vide)
 		{
 			string str = i + "x" + j;
 			SCOPED_TRACE(str);
-			EXPECT_EQ(0, plateau[i][j]->get_couleur());
+			EXPECT_EQ(0, (*plateau)[i][j]->get_couleur());
 		}
 	}
 }
@@ -68,7 +68,7 @@ TEST (methode_fusion, fusion_de_groupe){
     joe.poser(go.get_plateau(),1); //2,1
     mary.poser(go.get_plateau(),2); //4,5
 
-    EXPECT_EQ(6,go.get_plateau()[1][1]->get_nb_liberte());
+    EXPECT_EQ(6,(*go.get_plateau())[1][1]->get_nb_liberte());
 
 
 }

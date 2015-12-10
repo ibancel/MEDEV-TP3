@@ -54,7 +54,7 @@ public :
     int get_taille(){return taille;};
     void affichage ();
     Goban (int t);
-    vector<vector<Groupe*> > get_plateau(){return plateau;};
+    vector<vector<Groupe*> > *get_plateau(){return &plateau;};
 
 };
 
@@ -68,7 +68,7 @@ class Joueur {
 
     public:
         void passer();
-        bool poser(vector<vector<Groupe*> >, int);
+        bool poser(vector<vector<Groupe*> > *, int);
 
         int get_couleur(){return couleur;};
         int get_nb_captures(){return nb_captures;};
