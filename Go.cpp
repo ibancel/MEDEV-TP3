@@ -92,6 +92,12 @@ Goban::Goban(int t){
         }
 
     }*/
+}
 
+bool operator==(coord c1, coord c2)
+{
+	if(c1.x == c2.x && c1.y == c2.y)
+		return true;
 
+	return false;
 }

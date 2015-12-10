@@ -26,6 +26,7 @@ TEST(initialisation_test, plateau5_vide)
 		for(int j = 0 ; j < 5 ; j++)
 		{
 			string str = i + "x" + j;
+
 			SCOPED_TRACE(str);
 			EXPECT_EQ(0, plateau[i][j]->get_couleur());
 		}

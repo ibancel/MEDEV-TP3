@@ -8,10 +8,11 @@
 using namespace std;
 
 struct coord {
-    int x;
-    int y;
-
+    int x = 0;
+    int y = 0;
 };
+
+bool operator==(coord c1, coord c2);
 
 class Groupe {
 
