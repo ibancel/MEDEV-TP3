@@ -1,6 +1,10 @@
+#ifndef _H_GO
+#define _H_GO
+
 #include <vector>
 #include <iostream>
 #include <cstdlib>
+
 using namespace std;
 
 struct coord {
@@ -75,8 +79,4 @@ class Joueur {
 
 };
 
-
-
-
-
-
+#endif
