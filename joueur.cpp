@@ -19,13 +19,14 @@ Joueur::Joueur(int c){//initialisation d'un joueur
 bool poser(vector<vector<Groupe*> > plateau, int c){
     int i,j;//coordonnée de pose
     bool aJoue=false;
-
-    cout<<"Entrer les coordonnees ou vous voulez poser la pierre"<<endl;
-    cout<< "x =";
-    cin>>i;
-    cout<<endl<<"y =";
-    cin>>j;
-    cout<<endl;
+    do{
+        cout<<"Entrer les coordonnees ou vous voulez poser la pierre"<<endl;
+        cout<< "x =";
+        cin>>i;
+        cout<<endl<<"y =";
+        cin>>j;
+        cout<<endl;
+    }while ((i<0)||(j<0)||(i>=plateau.size())||(j>=plateau.size()));
 
     if (plateau[i][j]->get_couleur() ==0){//la case est vide
 
