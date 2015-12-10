@@ -26,7 +26,10 @@ public:
     vector <coord> get_pierres(){return pierres;}
     void add_coord(coord position){pierres.push_back(position);}
 
+    //Fusion des Groupes
+    void fusion(vector<Groupe*> environ, vector<vector<Groupe*> > plateau);
 
+    //Constructeur
     Groupe(int c, int ddlib, coord position);
 
 

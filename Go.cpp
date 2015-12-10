@@ -21,6 +21,42 @@ void Goban :: affichage(){
 
 }
 
+void Groupe::fusion(vector<Groupe*> environ, vector<vector<Groupe*> > plateau){
+    int s;
+    s=environ.size();
+    int taille_gpe;
+    int i,j;
+
+    if (s>0){ //Au moins un groupe à fusionner
+        for (i=0; i<s;i++){ //Pour chaque groupe environnant
+            nb_liberte=nb_liberte+environ[i]->get_nb_liberte();
+
+            taille_gpe=environ[i]->get_pierres().size();
+
+            for(j=0;j<taille_gpe;j++){ //On ajoute les pierres dans le premier groupe
+                pierres.push_back(environ[i]->get_pierres()[j]);
+            }
+
+        }
+
+    //On enlève des ddl pour les pierres adjacentes (et de mêm couleur) à la nouvelle pierre
+    //Coordonnées de la pierre posée (nouvelle)
+    int coox=pierres[0].x;
+    int cooy=pierres[0].y;
+    //On compte le nbe de ddl à retirer
+    if (plateau[coox-1][cooy]-> get_couleur()==couleur)
+            nb_liberte--;
+    if (plateau[coox][cooy-1]->get_couleur()==couleur)
+            nb_liberte--;
+    if (plateau[coox][cooy+1]->get_couleur()==couleur)
+            nb_liberte--;
+    if (plateau[coox+1][cooy]->get_couleur()==couleur)
+            nb_liberte--;
+    }
+
+
+
+}
 
 Groupe::Groupe(int c, int ddlib, coord position){
 
