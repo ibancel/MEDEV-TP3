@@ -1,23 +1,13 @@
 #include <vector>
 #include <iostream>
 #include <cstdlib>
+using namespace std;
 
-
-class Goban {
-
-private:
-
-    int taille;
-    vector<vector<Groupe*> >  plateau;
-
-public :
-    vector<vector<Groupe*> > get_plateau() {return plateau;};
-    int get_taille(){return taille;};
-    void affichage ();
-    Goban (int t);
+struct coord {
+    int x;
+    int y;
 
 };
-
 
 class Groupe {
 
@@ -31,10 +21,32 @@ private :
 public:
 
 
-    int get_couleur () {return couleur;};
-    int get_nb_liberte(){return nb_liberte;};
+    int get_couleur () {return couleur;}
+    int get_nb_liberte(){return nb_liberte;}
     vector <coord> get_pierres(){return pierres;}
+    void add_coord(coord position){pierres.push_back(position);}
 
+
+    Groupe(int c, int ddlib, coord position);
+
+
+    };
+
+
+class Goban {
+
+private:
+
+    int taille;
+    vector<vector<Groupe*> >  plateau;
+
+public :
+
+
+    int get_taille(){return taille;};
+    void affichage ();
+    Goban (int t);
+    vector<vector<Groupe*> > get_plateau(){return plateau;};
 
 };
 
@@ -51,20 +63,15 @@ class Joueur {
         void poser(vector<vector<Groupe*> >, int);
 
         int get_couleur(){return couleur;};
-        int get_nb_captures(){return nb_capture;};
+        int get_nb_captures(){return nb_captures;};
         bool get_passe(){return passe;};
 
         Joueur(int c);
 
 
 
-}
+};
 
-struct coord {
-    int x;
-    int y;
-
-}
 
 
 

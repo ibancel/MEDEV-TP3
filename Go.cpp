@@ -24,9 +24,9 @@ void Goban :: affichage(){
 
 Groupe::Groupe(int c, int ddlib, coord position){
 
-couleur=c;
-nb_liberte=ddlib;
-
+    couleur=c;
+    nb_liberte=ddlib;
+    pierres.push_back(position);
 
 
 }

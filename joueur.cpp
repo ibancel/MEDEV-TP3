@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 #include "gtest/gtest.h"
 #include "Go.h"
 
