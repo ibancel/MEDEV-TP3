@@ -28,11 +28,6 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         cout<<endl;
     }while ((i<0)||(j<0)||(i>=plateau->size())||(j>=plateau->size()));
 
-    coord a;
-        a.x=i;
-        a.y=j;
-	(*plateau)[i][j]=(new Groupe (c,4,a));
-	return true;
 
     if ((*plateau)[i][j]->get_couleur() ==0){//la case est vide
 
