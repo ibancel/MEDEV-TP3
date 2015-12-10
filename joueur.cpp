@@ -94,7 +94,7 @@ bool poser(vector<vector<Groupe*> > plateau, int c){
        if(cpt!=0){//on peut poser la pierre
 
             plateau[i][j]=(new Groupe (c,lib,a));
-          //  plateau[i][j]->fusion(lib,liste,plateau);
+            plateau[i][j]->fusion(liste,plateau);
             aJoue=true;
         }
 
