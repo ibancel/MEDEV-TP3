@@ -54,3 +54,21 @@ TEST(initialisation_test, plateau9_vide)
 		}
 	}
 }
+
+TEST (methode_fusion, fusion_de_groupe){
+
+    Goban go(5);
+    Joueur joe(1);
+    Joueur mary(2);
+
+    joe.poser(go.get_plateau(),1); //1, 1
+    mary.poser(go.get_plateau(),2);//0,1
+    joe.poser(go.get_plateau(),1); //1,2
+    mary.poser(go.get_plateau(),2); //4,4
+    joe.poser(go.get_plateau(),1); //2,1
+    mary.poser(go.get_plateau(),2); //4,5
+
+    EXPECT_EQ(6,go.get_plateau()[1][1]->get_nb_liberte());
+
+
+}
