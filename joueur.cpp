@@ -94,10 +94,9 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
             }
         }
 
-<<<<<<< HEAD
+D
         //On compte le nombre de ddl global du groupe après fusion
-=======
->>>>>>> Ajout fonction capture. Ajout test capture dans main
+
         for (int k=0;k<liste.size();k++){
             cpt=cpt+liste[k]->get_nb_liberte()-1; //ne représente pas le nombre de liberté du groupe fusionné ! permet juste de savoir si on se suicide ou pas
             //si on se suicide ça veut dire que la pierre posée a 0 liberté et que les autres groupes de la meme couleur autour en ont 1 -> celui de la pierre posée. Donc cpt = 0 dans le cas suicide
@@ -108,13 +107,9 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
 
        if(cpt!=0){//on peut poser la pierre
 
-<<<<<<< HEAD
+
             (*plateau)[i][j]=(new Groupe (c,lib,a)); //On créé un nouveau groupe, celui de la nouvelle pierre
             (*plateau)[i][j]->fusion(liste,*plateau); //On fusionne les groupes de la même couleur qui sont autour (s'il y en a)
-=======
-            (*plateau)[i][j]=(new Groupe (c,lib,a));
-            (*plateau)[i][j]->fusion(liste,*plateau);//on fusionne s'il le faut
->>>>>>> Ajout fonction capture. Ajout test capture dans main
             aJoue=true;
         }
 

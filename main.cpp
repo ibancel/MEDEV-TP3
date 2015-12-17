@@ -10,19 +10,7 @@ int main(int argc, char **argv)
 {
 
 	::testing::InitGoogleTest(&argc, argv);
-<<<<<<< HEAD
-    coord coo;
-    coo.x=2;
-    coo.y=2;
-    Goban go(5);
-    go.affichage();
-    Joueur P1(2);
-    bool test = P1.poser(go.get_plateau(),2);
-    go.get_plateau()[2][2]=new Groupe(4, 4, coo);
-    go.affichage();
-=======
 
->>>>>>> Ajout fonction capture. Ajout test capture dans main
 
     return RUN_ALL_TESTS();
 }
@@ -61,15 +49,13 @@ TEST(initialisation_test, plateau9_vide)
 		}
 	}
 }
-<<<<<<< HEAD
-/*
-TEST (methode_fusion, fusion_de_groupe){
 
-=======
+
+
 
 TEST(capture,capture)
 {
->>>>>>> Ajout fonction capture. Ajout test capture dans main
+
     Goban go(5);
     vector<vector<Groupe*> > *plateau= go.get_plateau();
     coord a;
@@ -91,4 +77,4 @@ TEST(capture,capture)
 
 
 }
-*/
+
