@@ -6,8 +6,7 @@
 
 #ifdef __unix__
 #define CLEAR "clear"
-#endif
-#ifdef __windows__
+#elif defined(_WIN32) || defined(WIN32)
 #define CLEAR "cls"
 #endif
 
