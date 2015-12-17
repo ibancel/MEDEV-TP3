@@ -36,22 +36,22 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         a.y=j;
         //on compte les degrés de liberté de la nouvelle pierre
         int lib=4;
-        if ((*plateau)[i-1][j]-> get_couleur()!=0 && i>0)
+        if (i <= 0 || (*plateau)[i-1][j]-> get_couleur()!=0)
             lib--;
-        if ((*plateau)[i][j-1]->get_couleur()!=0 && j>0)
+        if (j <= 0 || (*plateau)[i][j-1]->get_couleur()!=0)
             lib --;
-        if ((*plateau)[i][j+1]->get_couleur()!=0 && j<=(*plateau)->get_taille())
+        if (j >= (*plateau).size()-1 || (*plateau)[i][j+1]->get_couleur()!=0)
             lib--;
-        if ((*plateau)[i+1][j]->get_couleur()!=0 && i<=(*plateau)->get_taille())
+        if (i >= (*plateau).size()-1 || (*plateau)[i+1][j]->get_couleur()!=0)
             lib--;
 
         int cpt=lib; // cpt va compter les degrés de liberté de la pierre + groupes de pieces dce la même couleur pour determiner si la pose est possible
         bool id= false;
         vector<Groupe*> liste;
         //on regarde les groupes que l'on va devoir fusionner
-        if ((*plateau)[i-1][j]->get_couleur()==c)
+        if (i > 0 && (*plateau)[i-1][j]->get_couleur()==c)
             liste.push_back((*plateau)[i-1][j]);
-        if ((*plateau)[i+1][j]->get_couleur()==c){
+        if (i < (*plateau).size()-1 && (*plateau)[i+1][j]->get_couleur()==c){
             id = false;
 
             for (int k=0;k<liste.size();k++)
@@ -63,7 +63,7 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
             }
         }
 
-        if ((*plateau)[i][j-1]->get_couleur()==c){
+        if (j > 0 && (*plateau)[i][j-1]->get_couleur()==c){
             id =false;
 
             for (int k=0;k<liste.size();k++)
@@ -75,7 +75,7 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
 
             }
         }
-        if ((*plateau)[i][j+1]->get_couleur()==c){
+        if (j < (*plateau).size()-1 && (*plateau)[i][j+1]->get_couleur()==c){
             id = false;
 
             for (int k=0;k<liste.size();k++)
