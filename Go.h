@@ -81,4 +81,6 @@ class Joueur {
 
 };
 
+int nombre_ddl (Groupe bob, vector<vector<Groupe*> > go);
+
 #endif

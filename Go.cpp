@@ -108,3 +108,110 @@ bool operator==(coord c1, coord c2)
 
 	return false;
 }
+
+
+int nombre_ddl (Groupe bob, vector<vector<Groupe*> > go){
+
+    int nombre_pier=0;
+    nombre_pier=bob.get_pierres().size();
+    vector<coord> case_comptee;
+    int i;
+    int j;
+    bool deja_present=false;
+    coord case_ajoutee;
+
+    for(i=0; i<nombre_pier; i++){
+
+        coord case_active=bob.get_pierres()[i];
+
+//-------------------------------------------------------------------------------------------
+//Check la case du dessus
+
+        if (go[case_active.x+1][case_active.y]->get_couleur()==0 && case_active.x+1<go.size()){
+                for (j=0; j<case_comptee.size() ; j++){
+                    if (case_active.x+1==case_comptee[j].x && case_active.y==case_comptee[j].y){
+                        deja_present=true;
+                    }
+
+                }
+                if (!deja_present){
+                    case_ajoutee.x= case_active.x+1;
+                    case_ajoutee.y=case_active.y;
+                    case_comptee.push_back(case_ajoutee);
+                }
+
+        }
+
+        deja_present=false;
+
+
+
+
+//-------------------------------------------------------------------------------------------
+//Check la case du dessous
+        if (go[case_active.x-1][case_active.y]->get_couleur()==0 && case_active.x-1>=0){
+                for (j=0; j<case_comptee.size() ; j++){
+                    if (case_active.x-1==case_comptee[j].x && case_active.y==case_comptee[j].y){
+                        deja_present=true;
+                    }
+
+                }
+                if (!deja_present){
+                    case_ajoutee.x= case_active.x-1;
+                    case_ajoutee.y=case_active.y;
+                    case_comptee.push_back(case_ajoutee);
+                }
+
+        }
+
+        deja_present=false;
+
+
+
+//-------------------------------------------------------------------------------------------
+//Check la case de droite
+        if (go[case_active.x][case_active.y+1]->get_couleur()==0 && case_active.y+1<go.size()){
+                for (j=0; j<case_comptee.size() ; j++){
+                    if (case_active.x==case_comptee[j].x && case_active.y+1==case_comptee[j].y){
+                        deja_present=true;
+                    }
+
+                }
+                if (!deja_present){
+                    case_ajoutee.x= case_active.x;
+                    case_ajoutee.y=case_active.y+1;
+                    case_comptee.push_back(case_ajoutee);
+                }
+
+        }
+
+        deja_present=false;
+
+
+
+
+//-------------------------------------------------------------------------------------------
+//Check la case de gauche
+        if (go[case_active.x][case_active.y-1]->get_couleur()==0 && case_active.y-1>=0){
+                for (j=0; j<case_comptee.size() ; j++){
+                    if (case_active.x==case_comptee[j].x && case_active.y-1==case_comptee[j].y){
+                        deja_present=true;
+                    }
+
+                }
+                if (!deja_present){
+                    case_ajoutee.x= case_active.x;
+                    case_ajoutee.y=case_active.y-1;
+                    case_comptee.push_back(case_ajoutee);
+                }
+
+        }
+
+        deja_present=false;
+
+
+    }
+
+    return case_comptee.size();
+
+};

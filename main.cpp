@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 
 	::testing::InitGoogleTest(&argc, argv);
 
+
 	int choix;
 	cout << "Bienvenue dans le jeu de GO !" << endl << "1- Plateau 5x5" << endl << "2- Plateau 9x9" << endl << "> ";
 	cin >> choix;
@@ -46,6 +47,7 @@ int main(int argc, char **argv)
 		system(CLEAR);
 		go.affichage();
 	}
+
 
     return RUN_ALL_TESTS();
 }
@@ -88,8 +90,24 @@ TEST(initialisation_test, plateau9_vide)
 
 
 
-TEST(capture,capture_simple)
+
+TEST(ddl, nbre_ddl)
 {
+    Goban go(5);
+    Joueur joe(1);
+
+    joe.poser(go.get_plateau(),1); //1, 1
+    joe.poser(go.get_plateau(),1); //1,2
+
+    vector<vector<Groupe*> > plateau =  *go.get_plateau();
+
+    EXPECT_EQ(3,nombre_ddl( (*plateau[1][1]), plateau));
+
+
+}
+
+TEST (methode_fusion, fusion_de_groupe){
+
 
     Goban go(5);
     vector<vector<Groupe*> > *plateau= go.get_plateau();
