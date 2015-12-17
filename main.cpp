@@ -38,12 +38,12 @@ int main(int argc, char **argv)
 	while(!jb.get_passe() && !jn.get_passe())
 	{
 		cout << "Joueur blanc : ";
-		jb.poser(go.get_plateau(), jb.get_couleur());
+		while(!jb.poser(go.get_plateau(), jb.get_couleur())) {}
 		system(CLEAR);
 		go.affichage();
 
 		cout << "Joueur noir : ";
-		jn.poser(go.get_plateau(), jn.get_couleur());
+		while(!jn.poser(go.get_plateau(), jn.get_couleur())) {}
 		system(CLEAR);
 		go.affichage();
 	}
