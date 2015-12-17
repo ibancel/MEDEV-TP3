@@ -36,13 +36,13 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         a.y=j;
         //on compte les degrés de liberté de la nouvelle pierre
         int lib=4;
-        if ((*plateau)[i-1][j]-> get_couleur()!=0)
+        if ((*plateau)[i-1][j]-> get_couleur()!=0 && i>0)
             lib--;
-        if ((*plateau)[i][j-1]->get_couleur()!=0)
+        if ((*plateau)[i][j-1]->get_couleur()!=0 && j>0)
             lib --;
-        if ((*plateau)[i][j+1]->get_couleur()!=0)
+        if ((*plateau)[i][j+1]->get_couleur()!=0 && j<=(*plateau)->get_taille())
             lib--;
-        if ((*plateau)[i+1][j]->get_couleur()!=0)
+        if ((*plateau)[i+1][j]->get_couleur()!=0 && i<=(*plateau)->get_taille())
             lib--;
 
         int cpt=lib; // cpt va compter les degrés de liberté de la pierre + groupes de pieces dce la même couleur pour determiner si la pose est possible
