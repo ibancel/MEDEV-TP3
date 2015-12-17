@@ -53,7 +53,7 @@ TEST(initialisation_test, plateau9_vide)
 
 
 
-TEST(capture,capture)
+TEST(capture,capture_simple)
 {
 
     Goban go(5);
@@ -73,9 +73,61 @@ TEST(capture,capture)
     (*plateau)[0][1]=new Groupe (1,2,b);
 
     P.capture(plateau,b);
+
+    go.affichage();
     EXPECT_EQ(1,P.get_nb_captures());
     EXPECT_EQ(0,(*plateau)[0][0]->get_couleur());
 
 
 }
 
+TEST(capture,capture_groupe)
+{
+    Goban go(5);
+    vector<vector<Groupe*> > *plateau= go.get_plateau();
+    Joueur P(1);
+    coord a;
+    coord b;
+    coord c;
+    coord d;
+    coord e;
+    coord f;
+    coord g;
+    coord h;
+    a.x =0;
+    a.y=1;
+    b.x=0;
+    b.y=2;
+    c.x=1;
+    c.y=0;
+    d.x=1;
+    d.y=1;
+    e.x=1;
+    e.y=2;
+    f.x=1;
+    f.y=3;
+    g.x=2;
+    g.y=1;
+    h.x=2;
+    h.y=2;
+
+    (*plateau)[a.x][a.y]=new Groupe (1,1,a);
+    (*plateau)[b.x][b.y]=new Groupe (1,1,b);
+    (*plateau)[c.x][c.y]=new Groupe (1,2,c);
+    (*plateau)[d.x][d.y]=new Groupe (2,0,d);
+    (*plateau)[e.x][e.y]=new Groupe (2,0,e);
+    (*plateau)[f.x][f.y]=new Groupe (1,3,f);
+    (*plateau)[g.x][g.y]=new Groupe (1,2,g);
+    (*plateau)[h.x][h.y]=new Groupe (1,2,h);
+
+    vector<Groupe*> liste;
+    liste.push_back((*plateau)[e.x][e.y]);
+    (*plateau)[d.x][d.y]->fusion(liste,*plateau);
+
+    P.capture(plateau,c);
+    go.affichage();
+    EXPECT_EQ(2,P.get_nb_captures());
+    EXPECT_EQ(0,(*plateau)[d.x][d.y]->get_couleur());
+    EXPECT_EQ(0,(*plateau)[e.x][e.y]->get_couleur());
+
+}
