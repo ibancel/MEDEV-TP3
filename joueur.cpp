@@ -94,7 +94,7 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
             }
         }
 
-D
+
         //On compte le nombre de ddl global du groupe après fusion
 
         for (int k=0;k<liste.size();k++){

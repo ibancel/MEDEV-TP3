@@ -74,6 +74,7 @@ TEST(capture,capture)
 
     P.capture(plateau,b);
     EXPECT_EQ(1,P.get_nb_captures());
+    EXPECT_EQ(0,(*plateau)[0][0]->get_couleur());
 
 
 }
