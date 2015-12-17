@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 {
 
 	::testing::InitGoogleTest(&argc, argv);
+<<<<<<< HEAD
     coord coo;
     coo.x=2;
     coo.y=2;
@@ -19,6 +20,9 @@ int main(int argc, char **argv)
     bool test = P1.poser(go.get_plateau(),2);
     go.get_plateau()[2][2]=new Groupe(4, 4, coo);
     go.affichage();
+=======
+
+>>>>>>> Ajout fonction capture. Ajout test capture dans main
 
     return RUN_ALL_TESTS();
 }
@@ -57,21 +61,33 @@ TEST(initialisation_test, plateau9_vide)
 		}
 	}
 }
+<<<<<<< HEAD
 /*
 TEST (methode_fusion, fusion_de_groupe){
 
+=======
+
+TEST(capture,capture)
+{
+>>>>>>> Ajout fonction capture. Ajout test capture dans main
     Goban go(5);
-    Joueur joe(1);
-    Joueur mary(2);
+    vector<vector<Groupe*> > *plateau= go.get_plateau();
+    coord a;
+    a.x=1;
+    a.y=0;
+    coord b;
+    b.x=0;
+    b.y=1;
+    coord c;
+    c.x=0;
+    c.y=0;
+    Joueur P(1);
+    (*plateau)[1][0]=new Groupe (1,3,a);
+    (*plateau)[0][0]= new Groupe (2,1,c);
+    (*plateau)[0][1]=new Groupe (1,2,b);
 
-    joe.poser(go.get_plateau(),1); //1, 1
-    mary.poser(go.get_plateau(),2);//0,1
-    joe.poser(go.get_plateau(),1); //1,2
-    mary.poser(go.get_plateau(),2); //4,4
-    joe.poser(go.get_plateau(),1); //2,1
-    mary.poser(go.get_plateau(),2); //4,5
-
-    EXPECT_EQ(6,(*go.get_plateau())[1][1]->get_nb_liberte());
+    P.capture(plateau,b);
+    EXPECT_EQ(1,P.get_nb_captures());
 
 
 }

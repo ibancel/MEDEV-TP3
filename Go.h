@@ -73,6 +73,7 @@ class Joueur {
         int get_couleur(){return couleur;};
         int get_nb_captures(){return nb_captures;};
         bool get_passe(){return passe;};
+        void capture(vector<vector<Groupe*> > *plateau, coord a);
 
         Joueur(int c);
 
