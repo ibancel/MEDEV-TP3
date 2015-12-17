@@ -13,7 +13,7 @@ void Goban :: affichage(){
     0 pour une case vide, 1 pour un pion blanc et 2 pour un noir*/
     for (i=0; i<taille;i++){
         for (j=0; j<taille;j++){
-            cout<<plateau[i][j]->get_couleur()<<'\t';
+            cout<<plateau[j][i]->get_couleur()<<'\t';
 
         }
         cout<<endl;

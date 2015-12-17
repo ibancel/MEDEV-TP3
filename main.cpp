@@ -4,13 +4,49 @@
 #include "gtest/gtest.h"
 #include "Go.h"
 
+#ifdef __unix__
+#define CLEAR "clear"
+#endif
+#ifdef __windows__
+#define CLEAR "cls"
+#endif
+
 using namespace std;
+
+
 
 int main(int argc, char **argv)
 {
 
 	::testing::InitGoogleTest(&argc, argv);
 
+	int choix;
+	cout << "Bienvenue dans le jeu de GO !" << endl << "1- Plateau 5x5" << endl << "2- Plateau 9x9" << endl << "> ";
+	cin >> choix;
+
+	// uniquement plateau 5x5 ou 9x9
+	choix = (choix==1?5:9);
+	system(CLEAR);
+
+	Goban go(choix);
+
+	Joueur jb(1); // joueur blanc
+	Joueur jn(2); // joueur noir
+
+	go.affichage();
+
+	while(!jb.get_passe() && !jn.get_passe())
+	{
+		cout << "Joueur blanc : ";
+		jb.poser(go.get_plateau(), jb.get_couleur());
+		system(CLEAR);
+		go.affichage();
+
+		cout << "Joueur noir : ";
+		jn.poser(go.get_plateau(), jn.get_couleur());
+		system(CLEAR);
+		go.affichage();
+	}
 
     return RUN_ALL_TESTS();
 }
