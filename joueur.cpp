@@ -6,16 +6,19 @@
 
 using namespace std;
 
+//Méthode pour passer
 void Joueur::passer(){//permet de savoir que le joueur passe
     passe = true;
 }
 
+//Constructeur de la classe Joueur
 Joueur::Joueur(int c){//initialisation d'un joueur
     couleur = c;
     nb_captures=0;
     passe=false;
 }
 
+//Méthode pour poser un pion
 bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
     int i,j;//coordonnée de pose
     bool aJoue=false;
@@ -26,7 +29,7 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         cout<<endl<<"y =";
         cin>>j;
         cout<<endl;
-    }while ((i<0)||(j<0)||(i>=plateau->size())||(j>=plateau->size()));
+    }while ((i<0)||(j<0)||(i>=plateau->size())||(j>=plateau->size())); //Si les coordonnées entrées ne sont pas correctes, on redemande des coordonnées
 
 
     if ((*plateau)[i][j]->get_couleur() ==0){//la case est vide
@@ -34,7 +37,8 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         coord a;
         a.x=i;
         a.y=j;
-        //on compte les degrés de liberté de la nouvelle pierre
+        /*On compte les degrés de liberté de la nouvelle pierre :
+        on regarde si les cases qui l'entoure sont occupées.*/
         int lib=4;
         if (i <= 0 || (*plateau)[i-1][j]-> get_couleur()!=0)
             lib--;
@@ -45,7 +49,7 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         if (i >= (*plateau).size()-1 || (*plateau)[i+1][j]->get_couleur()!=0)
             lib--;
 
-        int cpt=lib; // cpt va compter les degrés de liberté de la pierre + groupes de pieces dce la même couleur pour determiner si la pose est possible
+        int cpt=lib; // cpt va compter les degrés de liberté de la pierre + groupes de pieces de la même couleur pour determiner si la pose est possible (il faut cpt>0)
         bool id= false;
         vector<Groupe*> liste;
         //on regarde les groupes que l'on va devoir fusionner
@@ -54,11 +58,12 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
         if (i < (*plateau).size()-1 && (*plateau)[i+1][j]->get_couleur()==c){
             id = false;
 
+            //On vérifie que ce groupe n'a pas déjà été pris en compte
             for (int k=0;k<liste.size();k++)
             {
                 id = ((*plateau)[i+1][j]==liste[k]);
             }
-            if (!id){
+            if (!id){ // Si le groupe n'est pas encore dans la liste, on l'y ajoute
                 liste.push_back((*plateau)[i+1][j]);
             }
         }
@@ -87,16 +92,18 @@ bool Joueur::poser(vector<vector<Groupe*> > *plateau, int c){
 
             }
         }
-        //on compte le nombre de liberté de la pierre considérée comme fusionnée avec les groupes alentours
+
+        //On compte le nombre de ddl global du groupe après fusion
         for (int k=0;k<liste.size();k++){
             cpt=cpt+liste[k]->get_nb_liberte()-1; //ne représente pas le nombre de liberté du groupe fusionné ! permet juste de savoir si on se suicide ou pas
         }
-
+        /*Remarque : cas du suicide.
+        cpt fonctionne, car la pierre posée a 0 ddl, et les groupes aux alenours en ont chacun 1, qui est la case où l'on pose la nouvelle pierre.*/
 
        if(cpt!=0){//on peut poser la pierre
 
-            (*plateau)[i][j]=(new Groupe (c,lib,a));
-            (*plateau)[i][j]->fusion(liste,*plateau);
+            (*plateau)[i][j]=(new Groupe (c,lib,a)); //On créé un nouveau groupe, celui de la nouvelle pierre
+            (*plateau)[i][j]->fusion(liste,*plateau); //On fusionne les groupes de la même couleur qui sont autour (s'il y en a)
             aJoue=true;
         }
 

@@ -10,11 +10,14 @@ int main(int argc, char **argv)
 {
 
 	::testing::InitGoogleTest(&argc, argv);
-
+    coord coo;
+    coo.x=2;
+    coo.y=2;
     Goban go(5);
     go.affichage();
-    Joueur P1(1);
-    bool test = P1.poser(go.get_plateau(),1);
+    Joueur P1(2);
+    bool test = P1.poser(go.get_plateau(),2);
+    go.get_plateau()[2][2]=new Groupe(4, 4, coo);
     go.affichage();
 
     return RUN_ALL_TESTS();
@@ -54,7 +57,7 @@ TEST(initialisation_test, plateau9_vide)
 		}
 	}
 }
-
+/*
 TEST (methode_fusion, fusion_de_groupe){
 
     Goban go(5);
@@ -72,3 +75,4 @@ TEST (methode_fusion, fusion_de_groupe){
 
 
 }
+*/
